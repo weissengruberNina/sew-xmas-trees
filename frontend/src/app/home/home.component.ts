@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-home',
@@ -7,13 +8,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-    constructor() {
+    public constructor(private readonly router: Router) {
+
     }
 
     ngOnInit(): void {
     }
 
     public treeBtnClick(): void {
-        alert('btn clicked')
+        this.router.navigate(['tree'])
     }
 }
