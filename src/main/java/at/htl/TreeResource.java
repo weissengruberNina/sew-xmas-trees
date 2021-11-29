@@ -2,6 +2,7 @@ package at.htl;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/tree")
@@ -22,6 +24,17 @@ public class TreeResource {
         return Response.ok(
                 TreeType.values()
         ).build();
+    }
+
+    @GET
+    @Path("{type}")
+    public Response getTreesOfType(@PathParam("type") TreeType type) {
+        var ids = trees.get(type)
+                .stream()
+                .map(Tree::getId)
+                .collect(Collectors.toList());
+
+        return Response.ok(ids).build();
     }
 
     private static Map<TreeType, List<Tree>> getTrees(){
