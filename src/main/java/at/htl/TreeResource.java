@@ -37,6 +37,24 @@ public class TreeResource {
         return Response.ok(ids).build();
     }
 
+    @GET
+    @Path("{type}/{id}")
+    public Response getTree(@PathParam("type") TreeType type, @PathParam("id") int id) {
+        var tree = getTreeById(type, id);
+        return (tree == null
+                ? Response.status(404)
+                : Response.ok(tree)).build();
+    }
+
+    private Tree getTreeById(TreeType type, int id) {
+        return trees
+                .get(type)
+                .stream()
+                .filter(t -> t.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
     private static Map<TreeType, List<Tree>> getTrees(){
         return new HashMap<>() {{
             put(TreeType.Blaufichte, List.of(
