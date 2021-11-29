@@ -1,9 +1,6 @@
 package at.htl;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
@@ -44,6 +41,23 @@ public class TreeResource {
         return (tree == null
                 ? Response.status(404)
                 : Response.ok(tree)).build();
+    }
+
+    @POST
+    @Path("{type}/{id}/buy")
+    public Response buyTree(@PathParam("type") TreeType type, @PathParam("id") int id) {
+        var tree = getTreeById(type, id);
+
+        if (tree == null) {
+            return Response.status(404).build();
+        }
+
+        if (tree.isSold()) {
+            return Response.notModified().build();
+        }
+
+        tree.setSold(true);
+        return Response.ok().build();
     }
 
     private Tree getTreeById(TreeType type, int id) {
