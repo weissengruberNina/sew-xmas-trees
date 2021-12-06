@@ -10,6 +10,7 @@ import { TreeComponent } from './tree/tree.component';
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import { TypeSelectionComponent } from './tree/type-selection/type-selection.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TypeSelectionComponent } from './tree/type-selection/type-selection.com
         BrowserAnimationsModule,
         MatCardModule,
         MatButtonModule,
-        HttpClientModule
+        HttpClientModule,
+        MatSelectModule
     ],
   providers: [],
   bootstrap: [AppComponent]
