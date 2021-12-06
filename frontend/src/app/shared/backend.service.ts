@@ -11,7 +11,7 @@ export class BackendService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public async getAllTreeTypes(): Promise<TreeType[]> {
+  public getAllTreeTypes(): Promise<TreeType[]> {
     const res = this.http.get<TreeType[]>(`${BASE_URL}/types`);
     return firstValueFrom(res);
   }
