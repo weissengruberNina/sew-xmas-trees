@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BackendService} from "../shared/backend.service";
 
 @Component({
   selector: 'app-tree',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TreeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private readonly backend: BackendService) { }
 
   ngOnInit(): void {
   }
