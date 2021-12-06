@@ -16,6 +16,14 @@ export class TypeSelectionComponent implements OnInit {
 
   public ngOnInit(): void {
     this.backend.getAllTreeTypes()
+      .subscribe({
+        next: res => {
+            this.treeTypes = res;
+        },
+        error: err => {
+            console.log(err.messageText)
+        }
+      });
   }
 
 }
