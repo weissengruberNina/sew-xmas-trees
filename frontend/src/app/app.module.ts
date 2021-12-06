@@ -9,12 +9,14 @@ import { HomeComponent } from './home/home.component';
 import { TreeComponent } from './tree/tree.component';
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
+import { TypeSelectionComponent } from './tree/type-selection/type-selection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TreeComponent
+    TreeComponent,
+    TypeSelectionComponent
   ],
     imports: [
         BrowserModule,
