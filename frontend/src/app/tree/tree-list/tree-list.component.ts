@@ -14,11 +14,17 @@ export class TreeListComponent implements OnChanges {
     constructor(private readonly backendService: BackendService) {
     }
 
-    public ngOnChanges(changes: SimpleChanges): void {
-        console.log(`I got type: ${changes['selectedTreeType']}`);
+    public async ngOnChanges(changes: SimpleChanges): Promise<void> {
+        await this.loadTrees(changes['selectedTreeType'].currentValue)
+            .then();
     }
 
-    private loadTrees(type: string): void {
-        const ids = this.backendService.getTreesOfType(type);
+    private async loadTrees(type: string): Promise<void> {
+        const ids = await this.backendService.getTreesOfType(type);
+        const trees = [];
+        for (const id of ids) {
+            trees.push(await this.backendService.getTreeById(type, id));
+        }
+        console.log(JSON.stringify(trees));
     }
 }
