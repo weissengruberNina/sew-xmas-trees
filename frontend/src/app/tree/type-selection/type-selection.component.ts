@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BackendService} from "../../shared/backend.service";
+import {MatSelectChange} from "@angular/material/select";
 
 @Component({
     selector: 'app-type-selection',
@@ -11,9 +12,13 @@ export class TypeSelectionComponent implements OnInit {
     public treeTypes: string[] | null;
     public selectedType: string | null;
 
+    @Output()
+    private typeSelected: EventEmitter<string>
+
     constructor(private readonly backend: BackendService) {
         this.treeTypes = null;
         this.selectedType = null;
+        this.typeSelected = new EventEmitter<string>();
     }
 
     public ngOnInit(): void {
@@ -31,4 +36,7 @@ export class TypeSelectionComponent implements OnInit {
             });
     }
 
+    typeSelectionChanged(change: MatSelectChange) {
+        this.typeSelected.emit(change.value);
+    }
 }
