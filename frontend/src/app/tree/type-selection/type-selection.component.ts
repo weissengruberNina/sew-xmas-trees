@@ -21,6 +21,9 @@ export class TypeSelectionComponent implements OnInit {
             .subscribe({
                 next: res => {
                     this.treeTypes = res;
+                    if (res.length > 0) {
+                        this.selectedType = res[0];
+                    }
                 },
                 error: err => {
                     console.log(err.messageText)
