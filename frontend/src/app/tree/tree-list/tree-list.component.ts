@@ -10,8 +10,10 @@ export class TreeListComponent implements OnChanges {
 
     @Input()
     public selectedTreeType!: string;
+    public treeIds: number[] | null;
 
     constructor(private readonly backendService: BackendService) {
+        this.treeIds = null;
     }
 
     public async ngOnChanges(changes: SimpleChanges): Promise<void> {
@@ -20,11 +22,6 @@ export class TreeListComponent implements OnChanges {
     }
 
     private async loadTrees(type: string): Promise<void> {
-        const ids = await this.backendService.getTreesOfType(type);
-        const trees = [];
-        for (const id of ids) {
-            trees.push(await this.backendService.getTreeById(type, id));
-        }
-        console.log(JSON.stringify(trees));
+        this.treeIds = await this.backendService.getTreesOfType(type);
     }
 }
