@@ -11,13 +11,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import { TypeSelectionComponent } from './tree/type-selection/type-selection.component';
 import {MatSelectModule} from "@angular/material/select";
+import { TreeListComponent } from './tree/tree-list/tree-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TreeComponent,
-    TypeSelectionComponent
+    TypeSelectionComponent,
+    TreeListComponent
   ],
     imports: [
         BrowserModule,
