@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { TypeSelectionComponent } from './tree/type-selection/type-selection.component';
 import {MatSelectModule} from "@angular/material/select";
 import { TreeListComponent } from './tree/tree-list/tree-list.component';
+import { TreeDisplayComponent } from './tree/tree-display/tree-display.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TreeListComponent } from './tree/tree-list/tree-list.component';
     HomeComponent,
     TreeComponent,
     TypeSelectionComponent,
-    TreeListComponent
+    TreeListComponent,
+    TreeDisplayComponent
   ],
     imports: [
         BrowserModule,
