@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BackendService, TreeType} from "../../shared/backend.service";
+import {BackendService} from "../../shared/backend.service";
 
 @Component({
   selector: 'app-type-selection',
@@ -8,7 +8,7 @@ import {BackendService, TreeType} from "../../shared/backend.service";
 })
 export class TypeSelectionComponent implements OnInit {
 
-  public treeTypes: TreeType[] | null;
+  public treeTypes: string[] | null;
 
   constructor(private readonly backend: BackendService) {
     this.treeTypes = null;

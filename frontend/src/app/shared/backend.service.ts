@@ -11,19 +11,14 @@ export class BackendService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public getAllTreeTypes(): Observable<TreeType[]> {
-    return this.http.get<TreeType[]>(`${BASE_URL}/types`);
+  public getAllTreeTypes(): Observable<string[]> {
+    return this.http.get<string[]>(`${BASE_URL}/types`);
   }
-}
-
-export enum TreeType {
-  Blaufichte,
-  Nordmanntanne
 }
 
 export interface ITree {
   id: number,
-  type: TreeType,
+  type: string,
   heightMeters: number,
   price: number,
   sold: boolean
