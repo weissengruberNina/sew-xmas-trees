@@ -14,6 +14,8 @@ import {MatSelectModule} from "@angular/material/select";
 import { TreeListComponent } from './tree/tree-list/tree-list.component';
 import { TreeDisplayComponent } from './tree/tree-display/tree-display.component';
 import { SaleComponent } from './tree/sale/sale.component';
+import { UserForm } from './tree/user-form.component.ts/user-form.component.ts.component';
+import { UserFormComponent } from './tree/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SaleComponent } from './tree/sale/sale.component';
     TypeSelectionComponent,
     TreeListComponent,
     TreeDisplayComponent,
-    SaleComponent
+    SaleComponent,
+    UserForm.Component.TsComponent,
+    UserFormComponent
   ],
     imports: [
         BrowserModule,

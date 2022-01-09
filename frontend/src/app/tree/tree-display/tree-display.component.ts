@@ -19,7 +19,7 @@ export class TreeDisplayComponent implements OnInit {
     public tree: ITree | null;
 
     public constructor(private readonly backendService: BackendService,
-                       private readonly sellDateService: SaleDataService,
+                       private readonly saleDateService: SaleDataService,
                        private readonly router: Router) {
         this.tree = null;
     }
@@ -33,7 +33,7 @@ export class TreeDisplayComponent implements OnInit {
     }
 
     public buyTree(): void {
-        this.sellDateService.tree = this.tree;
+        this.saleDateService.tree = this.tree;
         this.router.navigate(['sale']);
     }
 }
