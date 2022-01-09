@@ -14,8 +14,9 @@ import {MatSelectModule} from "@angular/material/select";
 import { TreeListComponent } from './tree/tree-list/tree-list.component';
 import { TreeDisplayComponent } from './tree/tree-display/tree-display.component';
 import { SaleComponent } from './tree/sale/sale.component';
-import { UserForm } from './tree/user-form.component.ts/user-form.component.ts.component';
 import { UserFormComponent } from './tree/user-form/user-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -26,7 +27,6 @@ import { UserFormComponent } from './tree/user-form/user-form.component';
     TreeListComponent,
     TreeDisplayComponent,
     SaleComponent,
-    UserForm.Component.TsComponent,
     UserFormComponent
   ],
     imports: [
@@ -36,7 +36,8 @@ import { UserFormComponent } from './tree/user-form/user-form.component';
         MatCardModule,
         MatButtonModule,
         HttpClientModule,
-        MatSelectModule
+        MatSelectModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,15 @@
-<p>
-    Display data of tree #{{tree.id}}
-</p>
-<app-user-form></app-user-form>
+<div *ngIf="tree">
+    <mat-card>
+        <p>Tree #{{tree.id}} ({{tree.type}}):</p>
+        <ul>
+            <li>Height: {{tree.heightMeters}}</li>
+            <li>Price: {{tree.price}}€</li>
+        </ul>
+    </mat-card>
+    <app-user-form></app-user-form>
+</div>
+<div *ngIf="!tree">
+    <p>
+        Please choose a tree first in order to finish your order!
+    </p>
+</div>
