@@ -3,15 +3,16 @@ package at.htl;
 import java.math.BigDecimal;
 
 public class Tree {
+
     private final int id;
-    private final TreeType treeType;
+    private final TreeType type;
     private final double heightMeters;
     private final BigDecimal price;
     private boolean sold;
 
     public Tree(int id, TreeType treeType, double heightMeters, BigDecimal price) {
         this.id = id;
-        this.treeType = treeType;
+        this.type = treeType;
         this.heightMeters = heightMeters;
         this.price = price;
     }
@@ -20,8 +21,8 @@ public class Tree {
         return id;
     }
 
-    public TreeType getTreeType() {
-        return treeType;
+    public TreeType getType() {
+        return type;
     }
 
     public double getHeightMeters() {

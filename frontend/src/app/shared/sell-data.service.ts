@@ -14,4 +14,5 @@ export class SaleDataService {
     public get tree(): ITree | null {
         return this.treeToSell;
     }
+
 }

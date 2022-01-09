@@ -1,0 +1,35 @@
+<mat-card>
+    <p>Tree #{{tree.id}} {{tree.type}}:</p>
+    <ul>
+        <li>Height: {{tree.heightMeters}}</li>
+        <li>Price: {{tree.price}}€</li>
+    </ul>
+</mat-card>
+
+<form [formGroup]="paypalForm" novalidate>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>PayPal</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+            </div>
+
+
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Iban" formControlName="iban" type="iban">
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="paypalForm.invalid">Submit</button>
+        </mat-card-actions>
+    </mat-card>
+
+</form>
+
