@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/tree")
@@ -16,7 +15,7 @@ public class TreeResource {
     private static final Map<TreeType, List<Tree>> trees = getTrees();
 
     @GET
-    @Path("types")
+    @Path("/types")
     public Response getTreeTypes() {
         return Response.ok(
                 TreeType.values()
@@ -24,20 +23,25 @@ public class TreeResource {
     }
 
     @GET
-    @Path("{type}")
+    @Path("/{type}")
     public Response getTreesOfType(@PathParam("type") TreeType type) {
-        var ids = trees.get(type)
-                .stream()
-                .map(Tree::getId)
-                .collect(Collectors.toList());
-
-        return Response.ok(ids).build();
+        try {
+            return Response.ok(
+                    trees.get(type)
+                            .stream()
+                            .map(Tree::getId)
+                            .toList()
+            ).build();
+        } catch (Exception e) {
+            return Response.status(404).build();
+        }
     }
 
     @GET
-    @Path("{type}/{id}")
+    @Path("/{type}/{id}")
     public Response getTree(@PathParam("type") TreeType type, @PathParam("id") int id) {
-        var tree = getTreeById(type, id);
+        Tree tree = getTreeById(type, id);
+
         return (tree == null
                 ? Response.status(404)
                 : Response.ok(tree)).build();
@@ -46,18 +50,17 @@ public class TreeResource {
     @POST
     @Path("{type}/{id}/buy")
     public Response buyTree(@PathParam("type") TreeType type, @PathParam("id") int id) {
-        var tree = getTreeById(type, id);
+        Tree tree = getTreeById(type, id);
 
         if (tree == null) {
             return Response.status(404).build();
-        }
-
-        if (tree.isSold()) {
+        } else if (tree.isSold()) {
             return Response.notModified().build();
-        }
+        } else {
+            tree.setSold(true);
 
-        tree.setSold(true);
-        return Response.ok().build();
+            return Response.ok().build();
+        }
     }
 
     private Tree getTreeById(TreeType type, int id) {
@@ -69,7 +72,7 @@ public class TreeResource {
                 .orElse(null);
     }
 
-    private static Map<TreeType, List<Tree>> getTrees(){
+    private static Map<TreeType, List<Tree>> getTrees() {
         return new HashMap<>() {{
             put(TreeType.Blaufichte, List.of(
                     new Tree(1, TreeType.Blaufichte, 1.8, BigDecimal.valueOf(17.99)),
@@ -77,6 +80,7 @@ public class TreeResource {
                     new Tree(3, TreeType.Blaufichte, 2.8, BigDecimal.valueOf(26.49)),
                     new Tree(4, TreeType.Blaufichte, 3.1, BigDecimal.valueOf(29.99))
             ));
+
             put(TreeType.Nordmanntanne, List.of(
                     new Tree(5, TreeType.Nordmanntanne, 1.2, BigDecimal.valueOf(17.49)),
                     new Tree(6, TreeType.Nordmanntanne, 1.45, BigDecimal.valueOf(25.49)),

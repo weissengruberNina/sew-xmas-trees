@@ -35,5 +35,10 @@ export class PaypalComponent {
     ngOnInit(): void {
     }
 
-
+    async onSubmit(): Promise<void> {
+        if (this.tree) {
+            this.backendService.buyTree(this.tree).then(console.log);
+            this.router.navigate(['*']);
+        }
+    }
 }

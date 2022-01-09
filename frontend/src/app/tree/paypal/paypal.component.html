@@ -6,7 +6,7 @@
     </ul>
 </mat-card>
 
-<form [formGroup]="paypalForm" novalidate>
+<form [formGroup]="paypalForm" novalidate (ngSubmit)="onSubmit()">
     <mat-card>
         <mat-card-header>
             <mat-card-title>PayPal</mat-card-title>
