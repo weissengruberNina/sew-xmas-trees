@@ -91,6 +91,17 @@ public class TreeResource {
                     new Tree(11, TreeType.Nordmanntanne, 2.35, BigDecimal.valueOf(39.99)),
                     new Tree(12, TreeType.Nordmanntanne, 2.6, BigDecimal.valueOf(43.49))
             ));
+
+            put(TreeType.Edeltanne, List.of(
+                    new Tree(13, TreeType.Edeltanne, 1.1, BigDecimal.valueOf(14.99)),
+                    new Tree(14, TreeType.Edeltanne, 0.85, BigDecimal.valueOf(12.99)),
+                    new Tree(15, TreeType.Edeltanne, 1.55, BigDecimal.valueOf(16.99))
+            ));
+
+            put(TreeType.Dornbusch, List.of(
+                    new Tree(16, TreeType.Dornbusch, 0.75, BigDecimal.valueOf(9.99)),
+                    new Tree(17, TreeType.Dornbusch, 0.95, BigDecimal.valueOf(13.99))
+            ));
         }};
     }
 }
