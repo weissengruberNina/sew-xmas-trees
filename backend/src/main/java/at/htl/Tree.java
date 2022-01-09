@@ -10,9 +10,9 @@ public class Tree {
     private final BigDecimal price;
     private boolean sold;
 
-    public Tree(int id, TreeType treeType, double heightMeters, BigDecimal price) {
+    public Tree(int id, TreeType type, double heightMeters, BigDecimal price) {
         this.id = id;
-        this.type = treeType;
+        this.type = type;
         this.heightMeters = heightMeters;
         this.price = price;
     }
