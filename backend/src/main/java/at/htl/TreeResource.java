@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/tree")
@@ -25,17 +26,20 @@ public class TreeResource {
     @GET
     @Path("/{type}")
     public Response getTreesOfType(@PathParam("type") TreeType type) {
-        try {
+        List<Tree> treesCollection = trees.get(type);
+
+        if (treesCollection == null) {
+            return Response.status(404).build();
+        } else {
             return Response.ok(
-                    trees.get(type)
+                    treesCollection
                             .stream()
                             .map(Tree::getId)
-                            .toList()
+                            .collect(Collectors.toList())
             ).build();
-        } catch (Exception e) {
-            return Response.status(404).build();
         }
     }
+
 
     @GET
     @Path("/{type}/{id}")
@@ -90,17 +94,6 @@ public class TreeResource {
                     new Tree(10, TreeType.Nordmanntanne, 2.2, BigDecimal.valueOf(36.99)),
                     new Tree(11, TreeType.Nordmanntanne, 2.35, BigDecimal.valueOf(39.99)),
                     new Tree(12, TreeType.Nordmanntanne, 2.6, BigDecimal.valueOf(43.49))
-            ));
-
-            put(TreeType.Edeltanne, List.of(
-                    new Tree(13, TreeType.Edeltanne, 1.1, BigDecimal.valueOf(14.99)),
-                    new Tree(14, TreeType.Edeltanne, 0.85, BigDecimal.valueOf(12.99)),
-                    new Tree(15, TreeType.Edeltanne, 1.55, BigDecimal.valueOf(16.99))
-            ));
-
-            put(TreeType.Dornbusch, List.of(
-                    new Tree(16, TreeType.Dornbusch, 0.75, BigDecimal.valueOf(9.99)),
-                    new Tree(17, TreeType.Dornbusch, 0.95, BigDecimal.valueOf(13.99))
             ));
         }};
     }
