@@ -18,7 +18,7 @@ export class PaypalComponent {
         email: [null, Validators.compose([
             Validators.required, Validators.email])
         ],
-        iban: [null, Validators.required],
+        password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
     });
 
     public tree: ITree;

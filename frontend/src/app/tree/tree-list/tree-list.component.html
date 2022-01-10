@@ -1,3 +1,2 @@
-<app-tree-display *ngFor="let treeId of treeIds" [treeId]="treeId" [type]="selectedTreeType">
-
-</app-tree-display>
+<app-tree-display *ngFor="let treeId of treeIds" [treeId]="treeId" [type]="selectedTreeType"></app-tree-display>
+<mat-error *ngIf="!treeIds">no trees were found for the requested type</mat-error>
